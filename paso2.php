@@ -2,8 +2,9 @@
 	error_reporting(E_ALL);
 	ini_set('display_errors', '1');
 	include("auth.php");
+	include("funciones.php");
 	$target_path = "uploads/";
-	$target_path = $target_path . basename( $_FILES['foto']['name']); 
+	$target_path = $target_path . date('Ymdhis').str_replace(" ","_",sanear_string(basename( $_FILES['foto']['name']))); 
 	move_uploaded_file($_FILES['foto']['tmp_name'], $target_path);
 	$path = $_FILES['foto']['name'];
 	$reacciones = array();
@@ -16,20 +17,8 @@
 	$numerodereacciones = count($reacciones);
 	$anchoreacciones =  1920/$numerodereacciones;
 	$nombre = $_POST['nombre'];
+	$color = $_POST['color'];
 	$status = 0;
-	$dbh = new PDO("mysql:host=$db_host;dbname=$db_name",$db_user,$db_pass);
-	$sql = "INSERT INTO reacciones (nombre,anchoreacciones,imagen,cantidad,status) values (:nombre,:anchoreacciones,:imagen,:cantidad,:status)";
-	$q = $dbh->prepare($sql);
-	$result = $q->execute(
-		array(
-			':nombre' => $nombre,
-			':anchoreacciones' => $anchoreacciones,
-			':imagen' => $target_path,
-			':cantidad' => $numerodereacciones,
-			':status' => $status
-		)
-	);
-	$lastId = $dbh->lastInsertId();
 ?>
 <!DOCTYPE html>
 <html>
@@ -73,6 +62,12 @@
 							</div>
 							<p>&nbsp;</p>
 							<form action="fin.php" method="post" id="form">
+								<input type="hidden" name="color" value="<?php echo $color ?>">
+								<input type="hidden" name="nombre" value="<?php echo $nombre ?>">
+								<input type="hidden" name="anchoreacciones" value="<?php echo $anchoreacciones ?>">
+								<input type="hidden" name="imagen" value="<?php echo $target_path ?>">
+								<input type="hidden" name="cantidad" value="<?php echo $numerodereacciones ?>">
+								<input type="hidden" name="status" value="<?php echo $status ?>">
 								<input type="hidden" id="iconoliketop" name="iconoliketop" value="<?php if(!empty( $_POST['like'])){echo "0";} ?>" class="require-one">
 								<input type="hidden" id="iconolovetop" name="iconolovetop" value="<?php if(!empty( $_POST['love'])){echo "0";} ?>" class="require-one">
 								<input type="hidden" id="iconohahatop" name="iconohahatop" value="<?php if(!empty( $_POST['haha'])){echo "0";} ?>" class="require-one">

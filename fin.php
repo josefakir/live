@@ -1,7 +1,10 @@
 <?php 
-	error_reporting(E_ALL);
-	ini_set('display_errors', '1');
 	include("auth.php");
+	$nombre = $_POST['nombre'];
+	$anchoreacciones = $_POST['anchoreacciones'];
+	$imagen = $_POST['imagen'];
+	$cantidad = $_POST['cantidad'];
+	$status = $_POST['status'];
 	$iconoliketop = $_POST['iconoliketop']*2;
 	$iconolovetop = $_POST['iconolovetop']*2;
 	$iconohahatop = $_POST['iconohahatop']*2;
@@ -15,24 +18,14 @@
 	$numerosadtop = $_POST['numerosadtop']*2;
 	$numeroangrytop = $_POST['numeroangrytop']*2;
 	$anchoreacciones = $_POST['anchoreacciones'];
-	
 	$postid = $_POST['postid'];
 	$status = 1;
-	$id = $_POST['id'];
 	$dbh = new PDO("mysql:host=$db_host;dbname=$db_name",$db_user,$db_pass);
-	$sql = "UPDATE reacciones 
-	SET 
-	likes = :likes, 
-	love = :love, 
-	haha = :haha, 
-	wow = :wow, 
-	sad = :sad, 
-	angry = :angry, 
-	anchoreacciones = :anchoreacciones,
-	id_fb = :id_fb,status = :status WHERE id = :id";
+	$sql = "INSERT INTO reacciones (nombre , likes, love, haha, wow, sad, angry, anchoreacciones, imagen, cantidad, id_fb, status) VALUES (:nombre , :likes, :love, :haha, :wow, :sad, :angry, :anchoreacciones, :imagen, :cantidad, :id_fb, :status)";
 	$q = $dbh->prepare($sql);
 	$result = $q->execute(
 		array(
+			':nombre' => $nombre,
 			':likes' => $iconoliketop."|".$numeroliketop,
 			':love' => $iconolovetop."|".$numerolovetop,
 			':haha' => $iconohahatop."|".$numerohahatop,
@@ -40,12 +33,13 @@
 			':sad' => $iconosadtop."|".$numerosadtop,
 			':angry' => $iconoangrytop."|".$numeroangrytop,
 			':anchoreacciones' => $anchoreacciones,
+			':imagen' => $imagen,
+			':cantidad' => $cantidad,
 			':id_fb' => $postid,
-			':status' => $status,
-			':id' => $id,
+			':status' => $status
 		)
 	);
-	
+	$id = $dbh->lastInsertId();	
 ?>
 <!DOCTYPE html>
 <html>

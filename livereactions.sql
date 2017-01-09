@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.0.2
+-- version 4.4.10
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 09, 2017 at 03:19 AM
--- Server version: 5.6.27
--- PHP Version: 5.6.17
+-- Servidor: localhost:3306
+-- Tiempo de generación: 09-01-2017 a las 20:32:04
+-- Versión del servidor: 5.5.42
+-- Versión de PHP: 5.6.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `livereactions`
+-- Base de datos: `livereactions`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reacciones`
+-- Estructura de tabla para la tabla `reacciones`
 --
 
 CREATE TABLE `reacciones` (
@@ -39,20 +39,21 @@ CREATE TABLE `reacciones` (
   `imagen` varchar(255) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `id_fb` varchar(255) NOT NULL,
-  `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` int(11) NOT NULL,
+  `color` varchar(4) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `reacciones`
+-- Volcado de datos para la tabla `reacciones`
 --
 
-INSERT INTO `reacciones` (`id`, `nombre`, `likes`, `love`, `haha`, `wow`, `sad`, `angry`, `anchoreacciones`, `imagen`, `cantidad`, `id_fb`, `status`) VALUES
-(17, 'ejemplo', '0|0', '820|900', '820|900', '820|900', '820|900', '0|0', 480, 'uploads/azucar.jpg', 4, '949617175173797', 1);
+INSERT INTO `reacciones` (`id`, `nombre`, `likes`, `love`, `haha`, `wow`, `sad`, `angry`, `anchoreacciones`, `imagen`, `cantidad`, `id_fb`, `status`, `color`) VALUES
+(20, 'Ejemplo', '816|900', '228|672', '172|252', '262|342', '222|432', '120|298', 320, 'uploads/../uploads/20170109081512liveactazucar.jpg', 6, '1234567890', 1, '#000');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -60,10 +61,10 @@ CREATE TABLE `usuarios` (
   `correo` varchar(255) NOT NULL,
   `contrasena` varchar(255) NOT NULL,
   `rol` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `usuarios`
+-- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `correo`, `contrasena`, `rol`) VALUES
@@ -71,35 +72,35 @@ INSERT INTO `usuarios` (`id`, `correo`, `contrasena`, `rol`) VALUES
 (2, 'ejemplo@ejemplo.com', 'a83f0f76c2afad4f5d7260824430b798', 2);
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `reacciones`
+-- Indices de la tabla `reacciones`
 --
 ALTER TABLE `reacciones`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `usuarios`
+-- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `reacciones`
+-- AUTO_INCREMENT de la tabla `reacciones`
 --
 ALTER TABLE `reacciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
--- AUTO_INCREMENT for table `usuarios`
+-- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

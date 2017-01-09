@@ -9,6 +9,7 @@
     )
     );
     $r= $q->fetch();
+    $rbd = $r;
     $postfacebook = $r['id_fb'];
     $reacciones = array();
     if($r['likes']!="0|0"){array_push($reacciones, array('tipo' => 'like', 'valor' =>$r['likes']));}
@@ -41,7 +42,7 @@
 				}
 				//print_R($r);
 				?>
-		<div class="tc wf <?php echo $tipo ?> count<?php echo $cantidadreacciones ?>_pos<?php echo $i ?>" style="margin-top:<?php echo $contador ?>px"><span class="counter">0</span></div>
+		<div class="tc wf <?php echo $tipo ?> count<?php echo $cantidadreacciones ?>_pos<?php echo $i ?>" style="margin-top:<?php echo $contador ?>px"><span class="counter" style="color:<?php echo $rbd['color'] ?>">0</span></div>
 				<?php
 				$i++;
 			}

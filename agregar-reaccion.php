@@ -28,6 +28,14 @@
 									<label>Nombre</label>
 									<input class="form-control" placeholder="Nombre de la reacción" name="nombre">
 								</div>
+								<div class="form-group">
+									<label>Color del contador</label>
+									<select class="form-control" name="color">
+										<option value="">Seleccione</option>
+										<option value="#fff">Blanco</option>
+										<option value="#000">Negro</option>
+									</select>
+								</div>		
 								<div class="form-group checkboxvalidate">
 									<label>Utilizar las siguientes reacciones</label>
 									<div class="checkbox">
@@ -81,11 +89,13 @@
 			$('#form1').validate({
 				rules : {
 					nombre : 'required',
+					color : 'required',
 					reaccion : 'required',
 					foto : 'required'
 				},
 				messages : {
 					nombre : 'Campo requerido',
+					color : 'Campo requerido',
 					reaccion : 'Campo requerido',
 					foto : 'Campo requerido'
 				},
